@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/three.js"></script>
+    <script>
+        // 新建一个场景
+        var scene = new THREE.Scene();
+        // 新建一个相机，设置最近1米，最远1000米距离
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        // 设置渲染器颜色
+        renderer.setClearColor('#FFFFFF');
+        // 设置渲染器大小
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        // 将渲染器加到body
+        document.body.appendChild(renderer.domElement);
+        // 定义几何体
+        var geometry = new THREE.CubeGeometry(2, 2, 2); // 宽高深各2
+        // 设置材质
+        var material = new THREE.MeshBasicMaterial({color: 0xff0000});
+        // 网格模型
+        var cube = new THREE.Mesh(geometry, material);
+        // 向场景添加此几何体
+        scene.add(cube);
+        // 因为相机与场景都在0，0点，所以改变一下相机位置
+        camera.position.z = 5;
+        // 渲染
+        function render() {
+            // 动画，每60秒执行一次
+            requestAnimationFrame(render);
+            // 沿某个轴进行旋转
+            cube.rotation.x += 0.01;
+            cube.rotation.z += 0.01;
+            renderer.render(scene, camera);
+        }
+        render();
+    </script>
+</body>
+</html>
