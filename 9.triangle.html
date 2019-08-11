@@ -79,6 +79,7 @@
             geometry.vertices.push(p2);
             geometry.vertices.push(p3);
 
+            // 新建一个面，Face3的0，1，2为点的索引
             var face = new THREE.Face3(0, 1, 2);
             var normal = new THREE.Vector3(0, 0, 1);
             face.normal.copy(normal);
